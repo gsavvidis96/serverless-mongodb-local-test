@@ -1,0 +1,24 @@
+service: aws-node-project
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+
+custom:
+  mongodb:
+    stages:
+      - dev
+
+plugins:
+  - serverless-mongodb-local
+  - serverless-offline
